@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class UserItem extends Component {
   state = {
@@ -29,3 +30,7 @@ export default class UserItem extends Component {
     );
   }
 }
+
+UserItem.propTypes = {
+  user: PropTypes.object.isRequired,
+};
