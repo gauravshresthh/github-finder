@@ -1,24 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Navbar from './components/layout/Navbar';
-import UserItem from './components/users/UserItem';
 import axios from 'axios';
 
+import Navbar from './components/layout/Navbar';
+import Users from './components/users/Users';
+
 function App() {
-  const [user, setUser] = useState([]);
+  const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(async () => {
-    setLoading(true);
-    const res = await axios.get('https://api.github.com/users');
-    setUser(res.data);
-    setLoading(false);
+  useEffect(() => {
+    async function fetchData() {
+      setLoading(true);
+      const res = await axios.get('https://api.github.com/users');
+      setUsers(res.data);
+      setLoading(false);
+    }
+    fetchData();
   }, []);
 
   return (
     <div className='App'>
       <Navbar />
-      <UserItem />
+      <div className='container'>
+        <Users loading={loading} users={users} />
+      </div>
     </div>
   );
 }
