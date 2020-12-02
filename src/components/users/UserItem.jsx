@@ -1,7 +1,6 @@
 import React from 'react';
 
 const UserItem = ({ user }) => {
-  console.log(user);
   return (
     <div className='card text-center'>
       <img
