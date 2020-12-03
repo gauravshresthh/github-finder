@@ -2,7 +2,7 @@
 
 /* Global Styles */
 :root {
-  --primary-color: #5e3cd8;
+  --primary-color: #36017c;
   --dark-color: #5e3cd8;
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
@@ -326,7 +326,7 @@ select,
 textarea {
   display: block;
   width: 100%;
-  padding: 0.4rem;
+  padding: 0.8rem;
   font-size: 1.2rem;
   border: 1px solid #ccc;
 }

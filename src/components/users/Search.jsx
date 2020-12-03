@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
-const Search = (props) => {
+const Search = ({ searchUsers, clearUsers, showClear, setAlert }) => {
   const [searchText, setSearchText] = useState('');
 
   const onChangeHandler = (e) => {
@@ -8,8 +9,12 @@ const Search = (props) => {
   };
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    props.searchUsers(searchText);
-    setSearchText('');
+    if (searchText === '') {
+      setAlert('Please enter something', 'light');
+    } else {
+      searchUsers(searchText);
+      setSearchText('');
+    }
   };
 
   return (
@@ -18,7 +23,7 @@ const Search = (props) => {
         <input
           type='text'
           name='text'
-          placeholder='Search Users...'
+          placeholder='Search for github users...'
           value={searchText}
           onChange={onChangeHandler}
         />
@@ -28,8 +33,19 @@ const Search = (props) => {
           className='btn btn-dark btn-block'
         />
       </form>
+      {showClear && (
+        <button className='btn btn-light btn-block' onClick={clearUsers}>
+          Clear
+        </button>
+      )}
     </div>
   );
 };
 
+Search.propTypes = {
+  searchUsers: PropTypes.func.isRequired,
+  clearUsers: PropTypes.func.isRequired,
+  showClear: PropTypes.bool.isRequired,
+  setAlert: PropTypes.func.isRequired,
+};
 export default Search;
